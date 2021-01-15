@@ -3,6 +3,9 @@
 namespace Savannabits\Pagetables;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use ReflectionClass;
 use Throwable;
 
@@ -133,9 +136,20 @@ class Pagetables
                     $fKey = $relationship->getForeignKeyName();
                     $fTable = $relationship->getRelated()->getTable();
                     $ownerTable = $relationship->getParent()->getTable();
+                    if ($relationship instanceof BelongsTo) {
+                        $q->orderBy(
+                            get_class($relationship->getRelated())::select($key[1])->whereColumn("$fTable.$ownerKey","$ownerTable.$fKey"),
+                            $this->sortDirection ?? 'asc'
+                        );
+                    } elseif ($relationship instanceof HasMany || $relationship instanceof HasOne) {
+                        $q->orderBy(
+                            get_class($relationship->getRelated())::select($key[1])->whereColumn("$fTable.$fKey","$ownerTable.$ownerKey"),
+                            $this->sortDirection ?? 'asc'
+                        );
+                    }
                     /*$q->join($fTable, "$ownerTable.$fKey", '=', "$fTable.$ownerKey")
                         ->orderBy($fTable.".".$key[1],$this->sortDirection ?? 'asc');*/
-                    $q->orderBy($fKey,$this->sortDirection ?? 'asc');
+                    /*$q->orderBy($fKey,$this->sortDirection ?? 'asc');*/
                 }
             }
         }
