@@ -3,7 +3,6 @@
 
 namespace Savannabits\Pagetables;
 
-
 class Column
 {
     private string $title;
@@ -11,8 +10,8 @@ class Column
     private bool $raw = false;
     private bool $sortable = false;
     private ?string $sortKey = null;
-    private ?string $searchKey=null;
-    private bool $searchable=false;
+    private ?string $searchKey = null;
+    private bool $searchable = false;
     private string $sortDirection = "asc";
 
     /**
@@ -87,39 +86,52 @@ class Column
     public static function name($name): Column
     {
         $instance = new self($name);
+
         return $instance;
     }
+
     public function title(string $title): Column
     {
         $this->title = $title;
+
         return $this;
     }
+
     public function raw(bool $raw): Column
     {
         $this->raw = $raw;
+
         return $this;
     }
+
     public function sort($key = null): Column
     {
         $this->sortable = true;
         $this->sortKey = is_null($key) ? $this->name : $key;
         $this->sortDirection = "asc";
+
         return $this;
     }
+
     public function sortDesc($key = null): Column
     {
         $this->sortable = true;
         $this->sortKey = is_null($key) ? $this->name : $key;
         $this->sortDirection = "desc";
+
         return $this;
     }
+
     public function searchable($key = null): Column
     {
         $this->searchable = true;
         $this->searchKey = $key ?? $this->name;
+
         return $this;
     }
-    public function toArray() {
+
+    public function toArray()
+    {
         return [
             "title" => $this->getTitle(),
             "name" => $this->getName(),
@@ -131,5 +143,4 @@ class Column
             "sort_direction" => $this->getSortDirection(),
         ];
     }
-
 }
