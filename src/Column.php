@@ -94,7 +94,7 @@ class Column
         $this->title = $title;
         return $this;
     }
-    public function raw(bool $raw): Column
+    public function raw(bool $raw = true): Column
     {
         $this->raw = $raw;
         return $this;

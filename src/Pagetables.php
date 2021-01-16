@@ -55,10 +55,11 @@ class Pagetables
     }
     public function make($withColumns = false): \Illuminate\Support\Collection
     {
-        $columnNames = collect($this->columns)->map(fn ($column) => $column->getName());
-        $query = $this->query->where(function (Builder $q) {
-            $firstColumn = collect($this->columns)->get(0);
-            $otherColumns = collect($this->columns)->except(0);
+        $columns = collect($this->columns)->reject(fn ($column) => $column->isRaw());
+        $columnNames = $columns->map(fn ($column) => $column->getName());
+        $query = $this->query->where(function (Builder $q) use($columns) {
+            $firstColumn = collect($columns)->get(0);
+            $otherColumns = collect($columns)->except(0);
             $this->applySearch($firstColumn,$q);
             foreach ($otherColumns as $column) {
                 $this->applySearch($column,$q,true);
