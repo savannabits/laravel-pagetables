@@ -24,7 +24,7 @@ class Pagetables
      */
     private array $columns;
     /**
-     * @var integer
+     * @var int
      */
     private $perPage;
     private array $filters;
@@ -60,10 +60,10 @@ class Pagetables
     {
         $columns = collect($this->columns)->reject(fn ($column) => $column->isRaw());
         $columnNames = $columns->map(fn ($column) => $column->getName());
-        $query = $this->query->where(function (Builder $q) use($columns) {
+        $query = $this->query->where(function (Builder $q) use ($columns) {
             $firstColumn = collect($columns)->get(0);
             $otherColumns = collect($columns)->except(0);
-            $this->applySearch($firstColumn,$q);
+            $this->applySearch($firstColumn, $q);
             foreach ($otherColumns as $column) {
                 $this->applySearch($column, $q, true);
             }

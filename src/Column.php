@@ -10,8 +10,8 @@ class Column
     private bool $raw = false;
     private bool $sortable = false;
     private ?string $sortKey = null;
-    private ?string $searchKey=null;
-    private bool $searchable=false;
+    private ?string $searchKey = null;
+    private bool $searchable = false;
     private string $sortDirection = "asc";
 
     /**
@@ -96,8 +96,8 @@ class Column
 
         return $this;
     }
-    public function raw(bool $raw = true): Column
 
+    public function raw(bool $raw = true): Column
     {
         $this->raw = $raw;
 
