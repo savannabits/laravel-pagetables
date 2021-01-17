@@ -153,7 +153,7 @@ class Pagetables
                             get_class($relationship->getRelated())::select($key[1])->whereColumn("$fTable.$ownerKey", "$ownerTable.$fKey"),
                             $this->sortDirection ?? 'asc'
                         );
-                    } elseif ($relationship instanceof HasMany || $relationship instanceof HasOne) {
+                    } elseif ($relationship instanceof HasOne) {
                         $q->orderBy(
                             get_class($relationship->getRelated())::select($key[1])->whereColumn("$fTable.$fKey", "$ownerTable.$ownerKey"),
                             $this->sortDirection ?? 'asc'
