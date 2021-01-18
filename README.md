@@ -5,6 +5,8 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/savannabits/laravel-pagetables.svg?style=flat-square)](https://packagist.org/packages/savannabits/laravel-pagetables)
 
 Generate Laravel pagination with support to search, sort, per_page and page queries. The Datatables support searching and ordering by children/parent relationships e.g user.role.name.
+
+If you are on Vue.js, we recommend using the **[Pagetables Component](https://github.com/savannabits/pagetables)** which renders nice datatables styled in tailwindcss and supports the payload from this package out of the box.
 ## Installation
 
 You can install the package via composer:
