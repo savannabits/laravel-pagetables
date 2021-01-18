@@ -1,9 +1,13 @@
 {
     "name": "savannabits/laravel-pagetables",
-    "description": "Server Side Adapter for Datatables using the default Laravel Pagination.",
+    "description": "Laravel Pagetables is a Server Side Adapter for Datatables using the default Laravel Pagination.",
     "keywords": [
         "savannabits",
-        "laravel-pagetables"
+        "laravel-pagetables",
+        "laravel",
+        "datatables",
+        "vue",
+        "pagetables"
     ],
     "homepage": "https://github.com/savannabits/laravel-pagetables",
     "license": "MIT",
